@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>மௌவல் ஓசை — ஆய்விதழ்</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Catamaran:wght@400;600;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#9B4D8C;
+    --primary-dark:#7A3B6F;
+    --primary-light:#C875B0;
+    --rose:#D97BA7;
+    --yellow:#F4D03F;
+    --dark:#2C1B3D;
+    --light:#FBF8F3;
+    --accent:#F5E6D3;
+    --gold:#D4A574;
+    --gray:#5C4B5C;
+    --gray-light:#E8DFE8;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  
+  body{
+    background:linear-gradient(135deg, #FBF8F3 0%, #F5E6D3 50%, #FFF9E6 100%);
+    background-attachment:fixed;
+    color:var(--dark);
+    font-family:'Noto Sans Tamil','Poppins',sans-serif;
+    line-height:1.6;
+    position:relative;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(155, 77, 140, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(217, 123, 167, 0.07) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(244, 208, 63, 0.04) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(155, 77, 140, 0.02) 100px, rgba(155, 77, 140, 0.02) 200px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  
+  /* ===== NAVIGATION ===== */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:white;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 6vw;
+  }
+
+  .nav-brand{
+    font-family:'Catamaran',sans-serif;
+    font-weight:900;
+    font-size:1.5rem;
+    letter-spacing:-0.01em;
+    color:var(--primary);
+  }
+
+  .nav-brand em{
+    font-style:normal;
+    color:var(--primary-dark);
+  }
+
+  .nav-links{
+    display:flex; gap:36px; font-size:0.95rem; font-weight:500;
+    color:var(--gray);
+  }
+
+  .nav-links a{
+    position:relative;
+    transition:color 0.3s ease;
+    color:var(--gray);
+  }
+
+  .nav-links a:hover{
+    color:var(--primary);
+  }
+
+  .nav-links a::after{
+    content:"";
+    position:absolute; bottom:-4px; left:0;
+    width:0; height:2px;
+    background:var(--primary);
+    transition:width 0.3s ease;
+  }
+
+  .nav-links a:hover::after{
+    width:100%;
+  }
+
+  /* ===== LOGO BANNER ===== */
+  .logo-banner{
+    background:linear-gradient(135deg, var(--primary) 0%, var(--rose) 100%);
+    padding:50px 6vw;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .logo-banner::before{
+    content:"";
+    position:absolute; top:-30%; right:-20%;
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+  }
+
+  .logo-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+    position:relative; z-index:1;
+    max-width:800px;
+    margin:0 auto;
+  }
+
+  .logo{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    box-shadow:0 12px 40px rgba(0,0,0,0.2);
+    transition:transform 0.3s ease;
+  }
+
+  .logo:hover{
+    transform:scale(1.05);
+  }
+
+  /* TEXT-BASED LOGO */
+  .text-logo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:150px;
+    height:150px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.2);
+    transition:all 0.3s ease;
+  }
+
+  .text-logo:hover{
+    transform:scale(1.05);
+    box-shadow:0 16px 48px rgba(0,0,0,0.25);
+  }
+
+  .logo-symbol{
+    font-size:3rem;
+    margin-bottom:8px;
+  }
+
+  .logo-name{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.4rem;
+    font-weight:900;
+    color:var(--primary);
+    letter-spacing:0.05em;
+  }
+
+  .logo-subtitle{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--primary-dark);
+    margin-top:2px;
+  }
+
+  .logo-text{
+    color:white;
+    text-align:left;
+  }
+
+  .logo-text h2{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.8rem;
+    font-weight:900;
+    margin-bottom:8px;
+  }
+
+  .logo-text p{
+    font-size:1rem;
+    opacity:0.95;
+    margin-bottom:8px;
+  }
+
+  .logo-text .reg-note{
+    font-size:0.85rem;
+    opacity:0.8;
+    font-weight:600;
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero{
+    padding:120px 6vw 80px;
+    text-align:center;
+    background:linear-gradient(135deg, rgba(155, 77, 140, 0.1) 0%, rgba(217, 123, 167, 0.08) 50%, rgba(244, 208, 63, 0.06) 100%);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero::before{
+    content:"";
+    position:absolute; top:-50%; right:-10%;
+    width:500px; height:500px;
+    background:radial-gradient(circle, rgba(217, 123, 167, 0.15), transparent 70%);
+    border-radius:50%;
+  }
+
+  .hero-content{
+    position:relative; z-index:1;
+    max-width:800px;
+    margin:0 auto;
+  }
+
+  .hero-tag{
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--primary);
+    font-weight:700;
+    margin-bottom:20px;
+    display:inline-block;
+  }
+
+  .hero h1{
+    font-family:'Catamaran',sans-serif;
+    font-size:clamp(2.2rem, 5vw, 3.8rem);
+    font-weight:900;
+    color:var(--dark);
+    line-height:1.2;
+    margin-bottom:24px;
+    letter-spacing:-0.02em;
+  }
+
+  .hero h1 em{
+    font-style:normal;
+    color:var(--primary);
+    display:block;
+  }
+
+  .hero-desc{
+    font-size:1.05rem;
+    color:var(--gray);
+    max-width:650px;
+    margin:0 auto 40px;
+    line-height:1.8;
+  }
+
+  .hero-meta{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+  }
+
+  .meta-badge{
+    background:white;
+    border:1px solid var(--gray-light);
+    border-radius:30px;
+    padding:10px 20px;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--dark);
+  }
+
+  .meta-badge strong{
+    color:var(--primary);
+  }
+
+  .hero-cta{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    padding:14px 32px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:all 0.3s ease;
+    display:inline-block;
+    cursor:pointer;
+    border:none;
+  }
+
+  .btn-primary{
+    background:var(--primary);
+    color:white;
+    box-shadow:0 8px 24px rgba(212,81,43,0.3);
+  }
+
+  .btn-primary:hover{
+    background:var(--primary-dark);
+    transform:translateY(-2px);
+    box-shadow:0 12px 32px rgba(212,81,43,0.4);
+  }
+
+  .btn-secondary{
+    background:white;
+    color:var(--primary);
+    border:2px solid var(--primary);
+  }
+
+  .btn-secondary:hover{
+    background:var(--primary);
+    color:white;
+  }
+
+  /* ===== SECTIONS ===== */
+  section{
+    padding:80px 6vw;
+    position:relative;
+  }
+
+  .section-head{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 60px;
+  }
+
+  .section-tag{
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--primary);
+    font-weight:800;
+    margin-bottom:12px;
+    display:block;
+  }
+
+  .section-head h2{
+    font-family:'Catamaran',sans-serif;
+    font-size:clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight:900;
+    color:var(--dark);
+    margin-bottom:16px;
+    letter-spacing:-0.01em;
+  }
+
+  .section-head p{
+    color:var(--gray);
+    font-size:1.02rem;
+    line-height:1.8;
+  }
+
+  /* About Grid */
+  .about-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:40px;
+    margin-top:60px;
+  }
+
+  .about-card{
+    background:white;
+    border-radius:12px;
+    padding:40px;
+    border:1px solid var(--gray-light);
+    transition:all 0.3s ease;
+  }
+
+  .about-card:hover{
+    border-color:var(--primary);
+    box-shadow:0 12px 32px rgba(212,81,43,0.1);
+    transform:translateY(-4px);
+  }
+
+  .about-card h3{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.3rem;
+    font-weight:800;
+    color:var(--primary);
+    margin-bottom:16px;
+  }
+
+  .about-card p{
+    color:var(--gray);
+    line-height:1.8;
+    font-size:0.98rem;
+  }
+
+  .reg-info{
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid var(--gray-light);
+    font-size:0.82rem;
+    color:#999;
+    font-family:'Poppins',sans-serif;
+  }
+
+  /* Focus Banner */
+  .focus-banner{
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color:white;
+    border-radius:14px;
+    padding:50px 40px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .focus-banner::before{
+    content:"";
+    position:absolute; top:-30%; right:-20%;
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+  }
+
+  .focus-text{
+    position:relative; z-index:1;
+  }
+
+  .focus-label{
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.7);
+    font-weight:800;
+    margin-bottom:12px;
+    display:block;
+  }
+
+  .focus-text h3{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.6rem;
+    font-weight:900;
+    margin-bottom:16px;
+  }
+
+  .focus-text p{
+    font-size:0.98rem;
+    line-height:1.8;
+    opacity:0.95;
+  }
+
+  .focus-marks{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    position:relative; z-index:1;
+  }
+
+  .focus-mark{
+    background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:8px;
+    padding:12px 24px;
+    font-size:0.9rem;
+    font-weight:700;
+    text-align:center;
+    backdrop-filter:blur(10px);
+  }
+
+  /* Scope Tags */
+  .scope-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    margin-top:40px;
+  }
+
+  .scope-tag{
+    background:white;
+    border:1px solid var(--primary);
+    border-radius:25px;
+    padding:10px 22px;
+    font-size:0.88rem;
+    color:var(--primary);
+    font-weight:600;
+    transition:all 0.3s ease;
+  }
+
+  .scope-tag:hover{
+    background:var(--primary);
+    color:white;
+  }
+
+  /* Steps */
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    margin-top:60px;
+  }
+
+  .step{
+    position:relative;
+    padding:32px 24px;
+    border-right:1px solid var(--gray-light);
+  }
+
+  .step:last-child{
+    border-right:none;
+  }
+
+  .step-num{
+    font-family:'Catamaran',sans-serif;
+    font-size:2rem;
+    font-weight:900;
+    color:var(--primary);
+    opacity:0.2;
+    margin-bottom:12px;
+  }
+
+  .step h4{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.05rem;
+    color:var(--dark);
+    margin-bottom:10px;
+    font-weight:700;
+  }
+
+  .step p{
+    font-size:0.88rem;
+    color:var(--gray);
+    line-height:1.6;
+  }
+
+  /* Current Issue */
+  .issue-card{
+    background:white;
+    border:2px solid var(--primary);
+    border-radius:12px;
+    padding:50px 40px;
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:40px;
+    align-items:center;
+    margin-top:60px;
+  }
+
+  .issue-vol{
+    font-family:'Catamaran',sans-serif;
+    font-size:3.2rem;
+    font-weight:900;
+    color:var(--primary);
+    line-height:1;
+  }
+
+  .issue-vol small{
+    display:block;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--gray);
+    margin-top:8px;
+  }
+
+  .issue-card h3{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.5rem;
+    color:var(--dark);
+    margin-bottom:12px;
+    font-weight:800;
+  }
+
+  .issue-card p{
+    color:var(--gray);
+    font-size:0.98rem;
+    margin-bottom:20px;
+    line-height:1.8;
+  }
+
+  .issue-status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--primary);
+  }
+
+  .pulse{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--primary);
+    animation:pulse 2s infinite;
+  }
+
+  @keyframes pulse{
+    0%, 100%{opacity:1;}
+    50%{opacity:0.4;}
+  }
+
+  /* Fee Card */
+  .fee-section{
+    background:linear-gradient(135deg, rgba(155, 77, 140, 0.08) 0%, rgba(217, 123, 167, 0.06) 100%);
+    border-radius:12px;
+    padding:50px 40px;
+    margin-top:60px;
+  }
+
+  .fee-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+
+  .fee-items{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .fee-item{
+    background:white;
+    border-left:4px solid var(--primary);
+    padding:24px;
+    border-radius:8px;
+  }
+
+  .fee-amount{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.8rem;
+    font-weight:900;
+    color:var(--primary);
+  }
+
+  .fee-amount small{
+    font-size:0.7rem;
+    color:var(--gray);
+    display:block;
+    margin-top:4px;
+    font-weight:600;
+  }
+
+  .fee-label{
+    font-size:0.92rem;
+    color:var(--dark);
+    font-weight:700;
+    margin-top:8px;
+  }
+
+  .fee-text h4{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.2rem;
+    color:var(--dark);
+    margin-bottom:12px;
+    font-weight:800;
+  }
+
+  .fee-text p{
+    color:var(--gray);
+    font-size:0.95rem;
+    line-height:1.8;
+  }
+
+  /* Footer */
+  footer{
+    background:var(--dark);
+    color:#ccc;
+    padding:70px 6vw 30px;
+    position:relative;
+  }
+
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:50px;
+    max-width:1200px;
+    margin:0 auto;
+    margin-bottom:50px;
+  }
+
+  footer h5{
+    font-family:'Catamaran',sans-serif;
+    font-size:1.1rem;
+    color:white;
+    margin-bottom:16px;
+    font-weight:800;
+  }
+
+  footer p, footer a{
+    font-size:0.92rem;
+    display:block;
+    margin-bottom:10px;
+    transition:color 0.3s ease;
+  }
+
+  footer a:hover{
+    color:var(--primary);
+  }
+
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:30px;
+    text-align:center;
+    font-size:0.82rem;
+    color:#999;
+  }
+
+  /* Responsive */
+  @media (max-width:768px){
+    .hero{padding:80px 6vw 60px;}
+    .hero h1{font-size:2rem;}
+    .about-grid{grid-template-columns:1fr;}
+    .focus-banner{grid-template-columns:1fr;}
+    .steps-grid{grid-template-columns:1fr 1fr;}
+    .issue-card{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .fee-grid{grid-template-columns:1fr;}
+    .nav-links{gap:20px; font-size:0.85rem;}
+    .logo-container{flex-direction:column; gap:20px;}
+    .logo-text{text-align:center;}
+  }
+
+  @media (max-width:480px){
+    nav{padding:14px 4vw;}
+    .nav-brand{font-size:1.2rem;}
+    .nav-links{display:none;}
+    section{padding:60px 4vw;}
+    .hero{padding:60px 4vw 40px;}
+    .hero h1{font-size:1.6rem;}
+    .steps-grid{grid-template-columns:1fr;}
+    .step{border-right:none; border-bottom:1px solid var(--gray-light);}
+    .step:last-child{border-bottom:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">மௌவல் <em>ஓசை</em></div>
+  <div class="nav-links">
+    <a href="#about">அறக்கட்டளை</a>
+    <a href="#journal">இதழ்</a>
+    <a href="issue.html">தற்போதைய இதழ்</a>
+    <a href="archives.html">முந்தைய தொகுதிகள்</a>
+    <a href="#contact">தொடர்பு</a>
+  </div>
+</nav>
+
+<section class="logo-banner">
+  <div class="logo-container">
+    <div class="text-logo">
+      <div class="logo-symbol">🌸</div>
+      <div class="logo-name">মௌວල්</div>
+      <div class="logo-subtitle">ஓசை</div>
+    </div>
+    <div class="logo-text">
+      <h2>மௌவல் ஓசை</h2>
+      <p>பன்னாட்டு இலக்கிய மொழியியல் ஆய்விதழ்</p>
+      <p class="reg-note">மௌவல் அறக்கட்டளை | பதிவு: BKTV 9/2020</p>
+    </div>
+  </div>
+</section>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">தமிழ் இலக்கிய ஆய்விதழ்</span>
+    <h1>மௌவல் <em>ஓசை</em></h1>
+    <p class="hero-desc"><strong>மௌவல் ஓசை</strong> — மௌவல் அறக்கட்டளை வெளியிடும் வருடாந்திர ஆய்விதழ். செம்மொழித் தமிழின் இலக்கியம், வரலாறு, பண்பாடு குறித்த ஆழ்ந்த ஆய்வுக் கட்டுரைகளுக்கான களம்.</p>
+    
+    <div class="hero-meta">
+      <span class="meta-badge">பதிவு: <strong>BKTV 9/2020</strong></span>
+      <span class="meta-badge">இடம்: <strong>திண்டிவனம்</strong></span>
+      <span class="meta-badge">வெளியீடு: <strong>ஆண்டுக்கு இருமுறை</strong></span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="issue.html" class="btn btn-primary">தற்போதைய இதழ்</a>
+      <a href="#journal" class="btn btn-secondary">மேலும் தெரிந்து கொள்ளுங்கள்</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head">
+    <span class="section-tag">அறக்கட்டளை</span>
+    <h2>மௌவல் அறக்கட்டளை</h2>
+  </div>
+  
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>நோக்கம்</h3>
+      <p>தமிழ் இலக்கிய ஆய்வுப் பாரம்பரியத்தைப் பேணி வளர்ப்பதே மௌவல் அறக்கட்டளையின் தாரக நோக்கம். இலக்கிய நிகழ்வுகள், புத்தக வெளியீடுகள், ஆண்டு ஆய்வுக் கருத்தரங்குகள் ஆகியவை மூலம், செம்மொழித் தமிழின் ஆழங்களை இன்றைய ஆராய்ச்சியாளர்களுக்கும் மாணவர்களுக்கும் கொண்டு சேர்க்கும் ஒரு வளமான கல்விக் களமாக இது செயல்படுகிறது.</p>
+      <div class="reg-info">பதிவு எண்: BKTV 9/2020 · திண்டிவனம்</div>
+    </div>
+
+    <div class="about-card">
+      <h3>ஆய்விதழ்</h3>
+      <p>மௌவல் ஓசை ஆய்விதழ், அறக்கட்டளை ஆண்டுதோறும் நடத்தும் ஆய்வுக் கருத்தரங்கின் கட்டுரைகளைத் தொகுத்து, பன்னாட்டு அளவில் அங்கீகரிக்கப்பட்ட ஒரு தொடர் ஆய்விதழாக வெளியிடப்படுகிறது. பாரம்பரியத்தையும் புதுமையையும் இணைத்து, தமிழ் ஆய்வு உலகில் ஒரு நிலையான குரலாக மௌவல் ஓசை வளரும்.</p>
+    </div>
+  </div>
+</section>
+
+<section id="journal">
+  <div class="section-head">
+    <span class="section-tag">ஆய்வுப் பரப்பு</span>
+    <h2>சிறப்பு கவனம்</h2>
+    <p>செம்மொழித் தமிழ் இலக்கியம் தொடர்பான பல்வேறு கோணங்களில் ஆய்வுக் கட்டுரைகளை வரவேற்கிறோம்.</p>
+  </div>
+
+  <div class="focus-banner">
+    <div class="focus-text">
+      <span class="focus-label">முக்கிய ஆய்வுப் பரப்பு</span>
+      <h3>திருக்குறள், காப்பியங்கள், ஆசீவக மெய்யியல்</h3>
+      <p>உலகளாவிய அறவியல் நூலான திருக்குறளும், சிலப்பதிகாரம், மணிமேகலை, சீவகசிந்தாமணி உள்ளிட்ட ஐம்பெருங் காப்பியங்களும், மற்றும் தமிழகத்தில் வேரூன்றிய ஆசீவக மெய்யியல் மரபும் — இவற்றின் தத்துவம், அறம், கலைநயம் குறித்த ஆழ்ந்த ஆய்வுக் கட்டுரைகளுக்கு மௌவல் ஓசை சிறப்பு முன்னுரிமை அளிக்கிறது.</p>
+    </div>
+    <div class="focus-marks">
+      <div class="focus-mark">குறள்</div>
+      <div class="focus-mark">காப்பியம்</div>
+      <div class="focus-mark">ஆசீவகம்</div>
+    </div>
+  </div>
+
+  <div class="scope-wrap">
+    <span class="scope-tag">திருக்குறள் ஆய்வு</span>
+    <span class="scope-tag">ஐம்பெருங் காப்பியங்கள்</span>
+    <span class="scope-tag">சங்க இலக்கியம்</span>
+    <span class="scope-tag">அறநூல்கள்</span>
+    <span class="scope-tag">பக்தி இலக்கியம்</span>
+    <span class="scope-tag">பண்பாட்டு ஆய்வு</span>
+    <span class="scope-tag">மொழியியல்</span>
+    <span class="scope-tag">தமிழும் அறிவியலும்</span>
+    <span class="scope-tag">நவீன இலக்கியம்</span>
+    <span class="scope-tag">ஒப்பீட்டு ஆய்வு</span>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="section-tag">முதல் தொகுதி</span>
+    <h2>தற்போதைய நிலவரம்</h2>
+  </div>
+
+  <div class="issue-card">
+    <div class="issue-vol">01<small>தொகுதி</small></div>
+    <div>
+      <h3>முதல் தொகுதி — 2026</h3>
+      <p>அறக்கட்டளையின் முதல் ஆய்வுக் கருத்தரங்கில் வாசிக்கப்பட்ட கட்டுரைகளின் தொகுப்பு, ஆன்லைனில் வெளியிடப்படவுள்ளது. பொதுவாக ஐந்து மூல ஆய்வுக் கட்டுரைகளுடன் முதல் இதழ் தயாரிக்கப்பட்டுள்ளது.</p>
+      <span class="issue-status"><span class="pulse"></span> கட்டுரைகள் திரட்டப்பட்டு வருகின்றன</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="section-tag">செய்முறை</span>
+    <h2>கட்டுரை அனுப்பும் முறை</h2>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>கட்டுரை தயாரிப்பு</h4>
+      <p>வழிகாட்டுதலின்படி கட்டுரையை தமிழில் தயார் செய்யவும்.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>சமர்ப்பித்தல்</h4>
+      <p>மின்னஞ்சல் வழியாக கட்டுரையை அனுப்பவும்.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>மறுஆய்வு</h4>
+      <p>ஆசிரியர் குழு மதிப்பாய்வு செய்து தெரிவிக்கும்.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>வெளியீடு</h4>
+      <p>ஏற்கப்பட்ட கட்டுரைகள் ஆண்டு இதழில் இடம்பெறும்.</p>
+    </div>
+  </div>
+
+  <div class="fee-section">
+    <div class="section-head" style="margin-bottom:40px;">
+      <span class="section-tag">கட்டணம்</span>
+      <h2>வெளியீட்டுக் கட்டணம்</h2>
+    </div>
+
+    <div class="fee-grid">
+      <div class="fee-items">
+        <div class="fee-item">
+          <div class="fee-amount">₹600<small>/ கட்டுரை</small></div>
+          <div class="fee-label">பொது ஆசிரியர்</div>
+        </div>
+        <div class="fee-item">
+          <div class="fee-amount">₹300<small>/ கட்டுரை</small></div>
+          <div class="fee-label">அறக்கட்டளை உறுப்பினர்</div>
+        </div>
+      </div>
+
+      <div class="fee-text">
+        <h4>வெளியீட்டுக் கட்டணம்</h4>
+        <p>ஏற்கப்பட்ட ஒவ்வொரு கட்டுரைக்கும் மறுஆய்வு முடிந்தபின் கட்டணம் செலுத்த வேண்டும். மௌவல் அறக்கட்டளையின் பதிவுசெய்யப்பட்ட உறுப்பினர்களுக்கு (₹300) மற்றும் பொது ஆசிரியர்களுக்கு (₹600) வெவ்வேறு விகிதங்கள். இதில் இதழ் வெளியீடு, ஆய்வுச் சான்றிதழ் வழங்குதல் ஆகியவை அடங்கும்.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h5>மௌவல் அறக்கட்டளை</h5>
+      <p>திண்டிவனம், தமிழ்நாடு, இந்தியா</p>
+      <p>பதிவு எண்: BKTV 9/2020</p>
+    </div>
+    <div>
+      <h5>பிரதான இணைப்புகள்</h5>
+      <a href="issue.html">தற்போதைய இதழ்</a>
+      <a href="archives.html">முந்தைய தொகுதிகள்</a>
+      <a href="#about">அறக்கட்டளை பற்றி</a>
+    </div>
+    <div>
+      <h5>தொடர்பு</h5>
+      <a href="mailto:moualtrust2020@gmail.com">moualtrust2020@gmail.com</a>
+      <p>ISSN (Online): விண்ணப்பிக்கப்பட்டுள்ளது</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 மௌவல் அறக்கட்டளை. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+  </div>
+</footer>
+
+</body>
+</html>
